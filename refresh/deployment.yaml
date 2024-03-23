@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: refresh-nginx
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: refresh-nginx
+  template:
+    metadata:
+      labels:
+        app: refresh-nginx
+    spec:
+      containers:
+      - name: refresh-nginx
+        image: nginx
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "0.1"
+        ports:
+        - containerPort: 80

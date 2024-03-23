@@ -1,0 +1,24 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recurse-nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: recurse-nginx
+  template:
+    metadata:
+      labels:
+        app: recurse-nginx
+    spec:
+      containers:
+      - name: recurse-nginx
+        image: nginx
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "0.1"
+        ports:
+        - containerPort: 80
